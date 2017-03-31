@@ -12,7 +12,7 @@ path {
 <script src="topojson.v0.min.js"></script>
 <script>
 const width = 960,
-  height = 500;
+  height = 480;
 const projection = d3.geoMercator()
   .center([0, 0])
   .scale(170)
@@ -33,7 +33,7 @@ d3.json("world-110m.v1.json", function(error, topology) {
       .attr("d", path);
       
 // places getting it done
-  d3.csv("cities-hack.csv", function(error, data) {
+  d3.csv("locations.csv", function(error, data) {
     if (error) return error;
     
     const gcircles = svg.append("g"),
