@@ -40,7 +40,7 @@ d3.json("world-110m.v1.json", function(error, topology) {
       gconnections = svg.append("g"),
       gmessage = svg.append("g");
         
-// mark the Hackathon cities... places where they're getting it done  
+// mark the places where they get it done every day
     gcircles.selectAll("circle")
       .data(data)
       .enter()
@@ -58,6 +58,7 @@ d3.json("world-110m.v1.json", function(error, topology) {
     const maxX = d3.max(data, function(d) {
       return projection([d.lon, d.lat])[0]; });
     const message = "494e4e4f564154494f4e21";        
+    const when = "June 22, 2017";
     const gridlineY = height * 0.75 - 90;
     const xpad = 20;
     const textHeight = 40;
@@ -80,7 +81,7 @@ d3.json("world-110m.v1.json", function(error, topology) {
       .style("stroke-width", "1")
       ;
  
-// add the message
+// add the messages
     gmessage.append("text")
       .attr("x", minX - xpad / 2)
       .attr("y", gridlineY + textHeight / 3)
@@ -92,6 +93,18 @@ d3.json("world-110m.v1.json", function(error, topology) {
       .style("fill", "azure")
       .text(message)
       ;
+
+    gmessage.append("text")
+      .attr("x", (minX + maxX) / 2)
+      .attr("y", gridlineY + 1.5 * textHeight)
+      .style("font-family", "monospace")
+      .style("font-size", textHeight / 1.5 + "px")
+      .style("stroke", "mediumblue")
+      .style("fill", "azure")
+      .style("text-anchor", "middle")
+      .text(when)
+      ;
+      
   });
 });
 </script>
